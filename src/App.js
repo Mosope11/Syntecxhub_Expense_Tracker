@@ -1,13 +1,5 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 
-const MOCK_API_EXPENSES = [
-  { id: 1, description: "Grocery Shopping", amount: 4500, category: "Food", date: "2025-03-01" },
-  { id: 2, description: "Uber Ride", amount: 1200, category: "Transport", date: "2025-03-02" },
-  { id: 3, description: "Netflix", amount: 4990, category: "Entertainment", date: "2025-03-03" },
-  { id: 4, description: "Electricity Bill", amount: 8500, category: "Utilities", date: "2025-03-04" },
-  { id: 5, description: "Lunch at Eatery", amount: 2300, category: "Food", date: "2025-03-05" },
-];
-
 const CATEGORIES = ["Food", "Transport", "Entertainment", "Utilities", "Health", "Education", "Other"];
 
 const CATEGORY_COLORS = {
@@ -20,9 +12,6 @@ const CATEGORY_COLORS = {
   Other: "#6b7280",
 };
 
-const fetchMockExpenses = () =>
-  new Promise((resolve) => setTimeout(() => resolve(MOCK_API_EXPENSES), 800));
-
 export default function ExpenseTracker() {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,12 +22,9 @@ export default function ExpenseTracker() {
 
   const descriptionRef = useRef(null);
 
-  useEffect(() => {
-    fetchMockExpenses().then((data) => {
-      setExpenses(data);
-      setLoading(false);
-    });
-  }, []);
+useEffect(() => {
+  setLoading(false);
+}, []);
 
   useEffect(() => {
     if (!loading) descriptionRef.current?.focus();
